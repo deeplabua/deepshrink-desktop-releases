@@ -1,0 +1,42 @@
+FFmpeg 9.0.2 — LGPL-2.1-or-later build for DeepShrink (Mac App Store).
+Rebuild: desktop/scripts/build-ffmpeg-lgpl.sh (sources below, then the configure line).
+
+Sources:
+  FFmpeg   9.0.2  https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz  (LGPL-2.1-or-later)
+  Opus     1.5.2  https://downloads.xiph.org/releases/opus/opus-1.5.2.tar.gz  (BSD-3-Clause)
+  LAME     3.100  https://downloads.sourceforge.net/project/lame/lame/3.100/lame-3.100.tar.gz  (LGPL-2.0-or-later)
+  libogg   1.3.6  https://downloads.xiph.org/releases/ogg/libogg-1.3.6.tar.xz  (BSD-3-Clause)
+  libvorbis 1.3.7  https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.7.tar.xz  (BSD-3-Clause)
+  SVT-AV1  4.2.0  https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v4.2.0/SVT-AV1-v4.2.0.tar.gz  (BSD-3-Clause-Clear + AOM patent licence)
+  dav1d    1.5.4  https://downloads.videolan.org/pub/videolan/dav1d/1.5.4/dav1d-1.5.4.tar.xz  (BSD-2-Clause)
+  libvmaf  3.0.0  https://github.com/Netflix/vmaf/archive/refs/tags/v3.0.0.tar.gz  (BSD-2-Clause-Patent)
+  zimg     3.0.5  https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.5.tar.gz  (WTFPL)
+
+FFmpeg configure:
+  --prefix=<prefix>
+  --arch=arm64
+  --target-os=darwin
+  --enable-cross-compile
+  --cc=clang
+  --cxx=clang++
+  --pkg-config-flags=--static
+  --enable-static
+  --disable-shared
+  --disable-autodetect
+  --disable-network
+  --disable-doc
+  --disable-ffplay
+  --disable-debug
+  --enable-videotoolbox
+  --enable-audiotoolbox
+  --enable-zlib
+  --enable-libsvtav1
+  --enable-libdav1d
+  --enable-libvmaf
+  --enable-libzimg
+  --enable-libopus
+  --enable-libmp3lame
+  --enable-libvorbis
+  --extra-cflags=-arch arm64 -mmacosx-version-min=13.0 -O2 -I<prefix>/include
+  --extra-ldflags=-arch arm64 -mmacosx-version-min=13.0 -L<prefix>/lib
+  --extra-libs=-lc++
